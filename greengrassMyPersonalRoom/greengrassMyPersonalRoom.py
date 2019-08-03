@@ -6,15 +6,13 @@ import greengrasssdk
 import platform
 import time
 import json
+import subprocess
 
 # Creating a greengrass core sdk client
 client = greengrasssdk.client('iot-data')
 
 # Retrieving platform information to send from Greengrass Core
 my_platform = platform.platform()
-
-# Counter to keep track of invocations of the function_handler
-my_counter = 0
 
 
 def function_handler(event, context):
@@ -32,4 +30,6 @@ def function_handler(event, context):
                                 .format(userId, my_platform, my_counter), 'event': '{}'.format(event), 'context': '{}'.format(context)})
         )
     time.sleep(1)
+    subprocess.call("chromium-browser https://www.entra.no", shell=True)
+    # chromium-browser www.youtube.com -start-fullscreen &; pid=$!; sleep 1m; kill -15 $pid <- for later use
     return
