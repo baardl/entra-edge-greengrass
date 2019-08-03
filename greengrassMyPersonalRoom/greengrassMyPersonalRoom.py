@@ -26,8 +26,8 @@ def function_handler(event, context):
     else:
         client.publish(
             topic='rooms/accepted',
-            payload=json.dumps({'message': 'Person accepted. userId: {}. Platform: {}.  Invocation Count: {}'
-                                .format(userId, my_platform, my_counter), 'event': '{}'.format(event), 'context': '{}'.format(context)})
+            payload=json.dumps({'message': 'Person accepted. userId: {}. Platform: {}. '
+                                .format(userId, my_platform), 'event': '{}'.format(event), 'context': '{}'.format(context)})
         )
     time.sleep(1)
     subprocess.call("chromium-browser https://www.entra.no", shell=True)
