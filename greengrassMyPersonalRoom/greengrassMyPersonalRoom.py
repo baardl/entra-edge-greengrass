@@ -31,5 +31,9 @@ def function_handler(event, context):
         )
     time.sleep(1)
     subprocess.call("chromium-browser https://www.entra.no", shell=True)
+    client.publish(
+        topic='rooms/accepted',
+        payload=json.dumps({'message': 'Url opened in browser'})
+    )
     # chromium-browser www.youtube.com -start-fullscreen &; pid=$!; sleep 1m; kill -15 $pid <- for later use
     return
